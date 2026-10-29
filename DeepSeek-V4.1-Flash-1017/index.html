@@ -1,0 +1,750 @@
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+							<style>
+								body {
+									background-color: white; /* Ensure the iframe has a white background */
+								}
+
+								
+							</style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KOKAGE COFFEE｜木陰で、ひと息。</title>
+<meta name="description" content="代々木上原の路地裏、自家焙煎珈琲と季節の菓子。KOKAGE COFFEE の一杯は、少しだけ時間をゆるめます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300&family=Noto+Serif+JP:wght@300;400;600&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ base ============ */
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --ink:#10150f;
+  --deep:#17241a;
+  --moss:#3b5138;
+  --cream:#f4efe4;
+  --sand:#e3d8c2;
+  --gold:#b78a4e;
+  --line:rgba(244,239,228,.16);
+  --serif:"Cormorant Garamond","Noto Serif JP",serif;
+  --jp:"Noto Serif JP",serif;
+  --sans:"Zen Kaku Gothic New",system-ui,sans-serif;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--cream);color:var(--ink);
+  font-family:var(--sans);font-weight:400;line-height:1.9;
+  letter-spacing:.04em;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit}
+::selection{background:var(--moss);color:var(--cream)}
+
+/* grain overlay */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.30;
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
+}
+
+/* progress */
+#progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--gold);z-index:10000;transition:width .1s linear}
+
+/* ============ type helpers ============ */
+.eyebrow{
+  font-family:var(--serif);font-size:.72rem;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--moss);display:inline-flex;align-items:center;gap:.9rem;
+}
+.eyebrow::before{content:"";width:34px;height:1px;background:currentColor;opacity:.6}
+.on-dark .eyebrow{color:var(--sand)}
+.h-xl{font-family:var(--jp);font-weight:400;line-height:1.18;letter-spacing:.02em;margin:0}
+.h-lg{font-family:var(--jp);font-weight:400;font-size:clamp(1.7rem,3.4vw,2.9rem);line-height:1.4;margin:0}
+.en{
+  font-family:var(--serif);font-style:italic;text-transform:none;
+  font-size:clamp(1.1rem,2vw,1.5rem);color:var(--gold);letter-spacing:.06em;
+}
+.lead{color:#4a5445;font-size:.94rem}
+.tiny{font-size:.72rem;letter-spacing:.18em;color:#6d7566}
+
+.wrap{width:min(1180px,90vw);margin-inline:auto}
+section{position:relative}
+
+/* ============ reveal ============ */
+.reveal{opacity:0;transform:translateY(34px);filter:blur(6px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease),filter 1.1s var(--ease)}
+.reveal.in{opacity:1;transform:none;filter:none}
+
+/* ============ nav ============ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:9000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.5rem clamp(1.2rem,4vw,3rem);
+  color:var(--cream);transition:.5s var(--ease);
+}
+.nav__logo{font-family:var(--serif);font-size:1.05rem;letter-spacing:.34em;text-transform:uppercase}
+.nav__logo small{display:block;font-family:var(--sans);font-size:.55rem;letter-spacing:.3em;opacity:.7;margin-top:.15rem}
+.nav__links{display:flex;gap:2.2rem;align-items:center}
+.nav__links a{font-size:.74rem;letter-spacing:.22em;position:relative;padding-bottom:.3rem}
+.nav__links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:currentColor;transition:.45s var(--ease)}
+.nav__links a:hover::after{width:100%}
+.nav.is-solid{background:rgba(244,239,228,.92);backdrop-filter:blur(14px);color:var(--ink);box-shadow:0 1px 0 rgba(16,21,15,.08);padding-block:.9rem}
+.nav__cta{
+  border:1px solid currentColor;border-radius:99px;padding:.7rem 1.6rem;
+  font-size:.7rem;letter-spacing:.24em;transition:.4s var(--ease);
+}
+.nav__cta:hover{background:var(--gold);border-color:var(--gold);color:#fff}
+.burger{display:none;background:none;border:0;color:currentColor;cursor:pointer;padding:.4rem}
+.burger span{display:block;width:26px;height:1px;background:currentColor;margin:6px 0;transition:.4s var(--ease)}
+.burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.drawer{
+  position:fixed;inset:0;background:var(--deep);color:var(--cream);z-index:8900;
+  display:flex;flex-direction:column;justify-content:center;gap:1.6rem;padding:6rem 2rem;
+  clip-path:circle(0% at 92% 5%);transition:clip-path .8s var(--ease);
+}
+.drawer.open{clip-path:circle(150% at 92% 5%)}
+.drawer a{font-family:var(--jp);font-size:1.5rem;letter-spacing:.12em;opacity:.9}
+.drawer a span{display:block;font-family:var(--serif);font-size:.68rem;letter-spacing:.34em;color:var(--gold);margin-bottom:.2rem}
+
+/* ============ hero ============ */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;
+  position:relative;overflow:hidden;color:var(--cream);isolation:isolate;padding-bottom:0}
+.hero__bg{position:absolute;inset:0;z-index:-2;
+  background:
+    radial-gradient(60% 50% at 78% 18%,rgba(183,138,78,.34),transparent 70%),
+    linear-gradient(180deg,rgba(10,15,10,.72) 0%,rgba(10,15,10,.45) 40%,rgba(8,12,8,.92) 100%),
+    url("https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat,
+    var(--deep);
+  transform:scale(1.08);animation:heroZoom 18s var(--ease) forwards}
+@keyframes heroZoom{to{transform:scale(1)}}
+.hero__steam{position:absolute;left:52%;top:14%;width:220px;height:420px;z-index:-1;opacity:.5}
+.hero__steam path{stroke:var(--sand);fill:none;stroke-width:1;animation:steam 7s ease-in-out infinite}
+.hero__steam path:nth-child(2){animation-delay:1.4s}
+@keyframes steam{0%{opacity:0;transform:translateY(28px)}40%{opacity:.65}100%{opacity:0;transform:translateY(-40px)}}
+
+.hero__inner{width:min(1180px,90vw);margin-inline:auto;padding-bottom:clamp(2rem,6vh,4rem)}
+.hero__title{font-family:var(--jp);font-weight:300;font-size:clamp(2.6rem,8vw,6.4rem);line-height:1.06;margin:.9rem 0 0;letter-spacing:.04em}
+.hero__title .line{display:block;overflow:hidden}
+.hero__title .line i{display:block;font-style:normal;transform:translateY(105%);animation:rise 1.4s var(--ease) forwards}
+.hero__title .line:nth-child(2) i{animation-delay:.18s}
+.hero__title em{font-family:var(--serif);font-style:italic;font-size:.62em;color:var(--gold);letter-spacing:.02em}
+@keyframes rise{to{transform:none}}
+.hero__lead{max-width:34rem;margin-top:1.8rem;color:rgba(244,239,228,.78);font-size:.92rem;opacity:0;animation:fade 1.4s var(--ease) 1s forwards}
+@keyframes fade{to{opacity:1}}
+.hero__actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:2.4rem;opacity:0;animation:fade 1.4s var(--ease) 1.2s forwards}
+.btn{
+  display:inline-flex;align-items:center;gap:.9rem;padding:1.05rem 2.1rem;border-radius:99px;
+  font-size:.74rem;letter-spacing:.26em;transition:.45s var(--ease);border:1px solid transparent;cursor:pointer}
+.btn--gold{background:var(--gold);color:#fff}
+.btn--gold:hover{background:#a97c40;transform:translateY(-2px);box-shadow:0 14px 30px -14px rgba(183,138,78,.9)}
+.btn--ghost{border-color:rgba(244,239,228,.42);color:var(--cream)}
+.btn--ghost:hover{background:rgba(244,239,228,.1);border-color:var(--cream)}
+.btn__arrow{width:22px;height:1px;background:currentColor;position:relative;transition:.4s var(--ease)}
+.btn__arrow::after{content:"";position:absolute;right:0;top:-3px;width:7px;height:7px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
+.btn:hover .btn__arrow{width:30px}
+
+.hero__bar{position:relative;border-top:1px solid rgba(244,239,228,.18);backdrop-filter:blur(6px);background:rgba(9,13,9,.28)}
+.hero__bar ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:0;padding:1.4rem 0;width:min(1180px,90vw);margin-inline:auto}
+.hero__bar li{font-size:.74rem;letter-spacing:.12em;color:rgba(244,239,228,.72);line-height:1.7}
+.hero__bar li b{display:block;font-family:var(--serif);font-size:.64rem;letter-spacing:.3em;color:var(--gold);font-weight:400;margin-bottom:.25rem;text-transform:uppercase}
+.scroll-hint{position:absolute;right:clamp(1.2rem,4vw,3rem);bottom:8.5rem;writing-mode:vertical-rl;font-family:var(--serif);font-size:.62rem;letter-spacing:.4em;color:rgba(244,239,228,.6);display:flex;align-items:center;gap:1rem}
+.scroll-hint::after{content:"";width:1px;height:60px;background:rgba(244,239,228,.5);animation:hint 2.4s var(--ease) infinite}
+@keyframes hint{0%,100%{transform:scaleY(.3);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}}
+
+/* marquee */
+.marquee{border-block:1px solid rgba(16,21,15,.12);background:var(--sand);overflow:hidden;padding:.9rem 0}
+.marquee__track{display:flex;gap:3rem;width:max-content;animation:slide 32s linear infinite;
+  font-family:var(--serif);font-size:.78rem;letter-spacing:.4em;text-transform:uppercase;color:var(--moss)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ============ concept ============ */
+.concept{padding:clamp(5rem,10vw,9rem) 0;background:var(--cream)}
+.concept__grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,6vw,5.5rem);align-items:center}
+.concept__media{position:relative;aspect-ratio:4/5;border-radius:2px;overflow:hidden;background:linear-gradient(150deg,#3b5138,#17241a)}
+.concept__media img{width:100%;height:100%;object-fit:cover;transition:transform 1.6s var(--ease)}
+.concept__media:hover img{transform:scale(1.05)}
+.concept__media::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 120px rgba(0,0,0,.28)}
+.concept__badge{
+  position:absolute;left:-1.6rem;bottom:2.2rem;background:var(--cream);color:var(--ink);
+  padding:1.3rem 1.5rem;border-radius:2px;box-shadow:0 24px 50px -30px rgba(0,0,0,.6);text-align:center}
+.concept__badge b{display:block;font-family:var(--serif);font-size:1.8rem;letter-spacing:.06em}
+.concept__badge span{font-size:.62rem;letter-spacing:.24em;color:#6d7566}
+.concept h2{margin:1.2rem 0 1.6rem}
+.concept p{color:#4a5445;font-size:.92rem}
+.concept__sign{display:flex;align-items:center;gap:1rem;margin-top:2.4rem;padding-top:1.8rem;border-top:1px solid rgba(16,21,15,.12)}
+.concept__sign i{width:44px;height:44px;border-radius:50%;background:var(--moss);color:var(--sand);display:grid;place-items:center;font-family:var(--serif);font-style:normal;font-size:.9rem}
+.concept__sign span{font-size:.74rem;letter-spacing:.16em;line-height:1.6}
+.concept__sign span b{display:block;font-weight:500}
+
+/* ============ menu ============ */
+.menu{background:var(--deep);color:var(--cream);padding:clamp(5rem,10vw,9rem) 0;overflow:hidden}
+.menu::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 40% at 85% 0%,rgba(183,138,78,.2),transparent 70%);pointer-events:none}
+.menu__head{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap;margin-bottom:3rem}
+.menu h2{margin-top:1rem;color:var(--cream)}
+.menu__note{max-width:22rem;font-size:.78rem;color:rgba(244,239,228,.55);letter-spacing:.08em}
+.tabs{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2.6rem}
+.tab{
+  background:transparent;border:1px solid rgba(244,239,228,.24);color:rgba(244,239,228,.7);
+  padding:.62rem 1.4rem;border-radius:99px;font-size:.7rem;letter-spacing:.22em;cursor:pointer;transition:.4s var(--ease)}
+.tab:hover{border-color:var(--sand)}
+.tab.active{background:var(--sand);border-color:var(--sand);color:var(--deep)}
+.menu__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.card{
+  position:relative;border:1px solid var(--line);border-radius:3px;padding:2rem 1.7rem 1.9rem;
+  background:linear-gradient(160deg,rgba(244,239,228,.055),rgba(244,239,228,.012));
+  transition:transform .6s var(--ease),border-color .6s,background .6s;overflow:hidden}
+.card:hover{transform:translateY(-6px);border-color:rgba(183,138,78,.6);background:linear-gradient(160deg,rgba(183,138,78,.14),rgba(244,239,228,.03))}
+.card.hide{display:none}
+.card__top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.4rem}
+.card__tag{font-family:var(--serif);font-size:.58rem;letter-spacing:.3em;color:var(--gold);text-transform:uppercase}
+.card__price{font-family:var(--serif);font-size:1.05rem;letter-spacing:.08em;color:var(--sand)}
+.card h3{font-family:var(--jp);font-weight:400;font-size:1.18rem;margin:0 0 .3rem;letter-spacing:.06em;color:var(--cream)}
+.card .en{font-size:.9rem;margin:0 0 1rem}
+.card p{font-size:.8rem;color:rgba(244,239,228,.58);margin:0;line-height:1.9}
+.card__num{position:absolute;right:1.1rem;bottom:.4rem;font-family:var(--serif);font-size:2.6rem;color:rgba(244,239,228,.07)}
+
+/* craft */
+.craft{padding:clamp(4.5rem,9vw,7.5rem) 0;background:var(--sand)}
+.craft__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.craft__item{border-top:1px solid rgba(16,21,15,.25);padding-top:1.6rem}
+.craft__item b{font-family:var(--serif);font-size:2.6rem;font-weight:300;letter-spacing:.02em;display:block;line-height:1}
+.craft__item b small{font-size:.9rem;letter-spacing:.16em;margin-left:.3rem}
+.craft__item h4{font-family:var(--jp);font-weight:500;font-size:1rem;margin:1rem 0 .5rem;letter-spacing:.1em}
+.craft__item p{font-size:.8rem;color:#4a5445;margin:0}
+
+/* ============ gallery ============ */
+.gallery{padding:clamp(5rem,10vw,9rem) 0;background:var(--cream)}
+.gallery__head{text-align:center;margin-bottom:3rem}
+.gallery__head h2{margin-top:1rem}
+.gallery__grid{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:130px;gap:.7rem}
+.ph{position:relative;overflow:hidden;background:linear-gradient(150deg,#3b5138,#17241a);border-radius:2px}
+.ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease),filter 1s;filter:saturate(.9)}
+.ph:hover img{transform:scale(1.07);filter:saturate(1.05)}
+.ph span{position:absolute;left:.9rem;bottom:.7rem;font-family:var(--serif);font-size:.6rem;letter-spacing:.26em;color:rgba(244,239,228,.85);text-transform:uppercase;z-index:2;opacity:0;transform:translateY(6px);transition:.5s var(--ease)}
+.ph:hover span{opacity:1;transform:none}
+.ph::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(8,12,8,.55),transparent 55%);opacity:0;transition:.5s}
+.ph:hover::after{opacity:1}
+.g1{grid-column:span 2;grid-row:span 2}
+.g2{grid-column:span 2;grid-row:span 1}
+.g3{grid-column:span 2;grid-row:span 2}
+.g4{grid-column:span 2;grid-row:span 1}
+.g5{grid-column:span 3;grid-row:span 2}
+.g6{grid-column:span 3;grid-row:span 2}
+
+/* voice */
+.voice{background:var(--moss);color:var(--cream);padding:clamp(4.5rem,9vw,7.5rem) 0;overflow:hidden}
+.voice__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:2.6rem}
+.voice blockquote{margin:0;padding:1.8rem;border:1px solid rgba(244,239,228,.2);border-radius:3px;font-size:.84rem;color:rgba(244,239,228,.82);line-height:2}
+.voice cite{display:block;margin-top:1.2rem;font-style:normal;font-family:var(--serif);font-size:.68rem;letter-spacing:.26em;color:var(--sand)}
+.stars{color:var(--gold);letter-spacing:.3em;font-size:.7rem;margin-bottom:.9rem;display:block}
+
+/* access */
+.access{padding:clamp(5rem,10vw,9rem) 0;background:var(--cream)}
+.access__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,5rem)}
+.info-table{width:100%;border-collapse:collapse;margin-top:2rem;font-size:.84rem}
+.info-table th{text-align:left;font-weight:400;color:#6d7566;letter-spacing:.14em;padding:1rem 0;width:7.5rem;border-bottom:1px solid rgba(16,21,15,.1);vertical-align:top;font-size:.74rem}
+.info-table td{padding:1rem 0;border-bottom:1px solid rgba(16,21,15,.1);color:#2c3527}
+.map{position:relative;min-height:420px;border-radius:3px;overflow:hidden;background:
+  linear-gradient(0deg,rgba(244,239,228,.7),rgba(244,239,228,.7)),
+  repeating-linear-gradient(0deg,#c9c2ae 0 1px,transparent 1px 44px),
+  repeating-linear-gradient(90deg,#c9c2ae 0 1px,transparent 1px 44px),#e6e0d0;
+  display:grid;place-items:center}
+.map__pin{position:relative;display:grid;place-items:center;gap:.6rem;text-align:center}
+.map__dot{width:16px;height:16px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(183,138,78,.6);animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 26px rgba(183,138,78,0)}100%{box-shadow:0 0 0 0 rgba(183,138,78,0)}}
+.map__label{font-family:var(--serif);font-size:.7rem;letter-spacing:.28em;color:var(--moss)}
+
+/* reserve */
+.reserve{background:var(--deep);color:var(--cream);padding:clamp(5rem,10vw,8rem) 0;position:relative;overflow:hidden}
+.reserve::before{content:"";position:absolute;inset:0;background:radial-gradient(55% 60% at 15% 20%,rgba(183,138,78,.22),transparent 65%)}
+.reserve__grid{position:relative;display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,6vw,5rem);align-items:start}
+.reserve h2{color:var(--cream);margin:1rem 0 1.2rem}
+.reserve p{color:rgba(244,239,228,.62);font-size:.86rem}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.field{display:flex;flex-direction:column;gap:.5rem}
+.field.full{grid-column:1/-1}
+.field label{font-size:.66rem;letter-spacing:.24em;color:var(--sand);text-transform:uppercase;font-family:var(--serif)}
+.field input,.field select,.field textarea{
+  background:rgba(244,239,228,.05);border:1px solid rgba(244,239,228,.22);border-radius:2px;
+  padding:.9rem 1rem;color:var(--cream);font-family:var(--sans);font-size:.85rem;outline:none;transition:.4s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--gold);background:rgba(244,239,228,.09)}
+.field select option{color:#111}
+.form .btn{grid-column:1/-1;justify-content:center;margin-top:.4rem}
+.form__msg{grid-column:1/-1;font-size:.76rem;color:var(--gold);letter-spacing:.12em;min-height:1.2em}
+
+/* footer */
+.footer{background:#0c110c;color:rgba(244,239,228,.55);padding:4rem 0 2rem;font-size:.76rem}
+.footer__top{display:flex;justify-content:space-between;gap:2rem;flex-wrap:wrap;padding-bottom:2.5rem;border-bottom:1px solid rgba(244,239,228,.12)}
+.footer__logo{font-family:var(--serif);font-size:1.1rem;letter-spacing:.34em;color:var(--cream);text-transform:uppercase}
+.footer__links{display:flex;gap:2rem;flex-wrap:wrap}
+.footer__links a{letter-spacing:.2em;font-size:.7rem;transition:.3s}
+.footer__links a:hover{color:var(--gold)}
+.footer__bottom{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-top:1.6rem;font-size:.66rem;letter-spacing:.14em}
+
+/* ============ responsive ============ */
+@media(max-width:1024px){
+  .concept__grid,.access__grid,.reserve__grid{grid-template-columns:1fr}
+  .menu__grid,.voice__grid{grid-template-columns:repeat(2,1fr)}
+  .craft__grid{grid-template-columns:1fr;gap:1.4rem}
+  .gallery__grid{grid-auto-rows:110px}
+  .concept__badge{left:1rem}
+}
+@media(max-width:760px){
+  .nav__links,.nav__cta{display:none}
+  .burger{display:block}
+  .hero__bar ul{grid-template-columns:1fr;gap:.9rem;padding:1.2rem 0}
+  .scroll-hint{display:none}
+  .menu__grid,.voice__grid,.form{grid-template-columns:1fr}
+  .gallery__grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}
+  .g1,.g2,.g3,.g4,.g5,.g6{grid-column:span 1;grid-row:span 1}
+  .g5,.g6{grid-row:span 2}
+  .hero__steam{display:none}
+  .field.full{grid-column:auto}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<!-- NAV -->
+<header class="nav" id="nav">
+  <a href="#" class="nav__logo">Kokage<small>Coffee &amp; Roastery</small></a>
+  <nav class="nav__links">
+    <a href="#concept">Concept</a>
+    <a href="#menu">Menu</a>
+    <a href="#gallery">Space</a>
+    <a href="#access">Access</a>
+  </nav>
+  <a href="#reserve" class="nav__cta">Reserve</a>
+  <button class="burger" id="burger" aria-label="メニューを開く" aria-expanded="false"><span></span><span></span><span></span></button>
+</header>
+
+<div class="drawer" id="drawer">
+  <a href="#concept"><span>01</span>コンセプト</a>
+  <a href="#menu"><span>02</span>メニュー</a>
+  <a href="#gallery"><span>03</span>空間</a>
+  <a href="#access"><span>04</span>店舗情報</a>
+  <a href="#reserve"><span>05</span>ご予約</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__bg"></div>
+  <svg class="hero__steam" viewBox="0 0 100 400" aria-hidden="true">
+    <path d="M32 380C12 320 52 300 34 240S14 160 40 100"/>
+    <path d="M66 380C46 320 86 300 68 240S48 160 74 100"/>
+  </svg>
+  <div class="hero__inner">
+    <span class="eyebrow" style="color:var(--sand)">Yoyogi-Uehara, Tokyo — Since 2019</span>
+    <h1 class="hero__title">
+      <span class="line"><i>木陰で、</i></span>
+      <span class="line"><i>ひと息を。<em>Kokage</em></i></span>
+    </h1>
+    <p class="hero__lead">
+      路地裏の小さな焙煎所。ゆっくりと落ちる午後の光、挽きたての香り、<br>
+      季節の果実をのせた菓子。ここでは時間の歩幅が、少しだけゆるやかになります。
+    </p>
+    <div class="hero__actions">
+      <a href="#reserve" class="btn btn--gold">席を予約する<span class="btn__arrow"></span></a>
+      <a href="#menu" class="btn btn--ghost">メニューを見る<span class="btn__arrow"></span></a>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+  <div class="hero__bar">
+    <ul>
+      <li><b>Hours</b>平日 9:00 – 19:00／土日祝 8:00 – 20:00</li>
+      <li><b>Address</b>東京都渋谷区上原 1-xx-x 木陰ビル 1F</li>
+      <li><b>Seats</b>全11席／全席禁煙・電源あり</li>
+    </ul>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Single Origin</span><span>·</span><span>Hand Drip</span><span>·</span><span>In-House Roastery</span><span>·</span><span>Seasonal Sweets</span><span>·</span>
+    <span>Single Origin</span><span>·</span><span>Hand Drip</span><span>·</span><span>In-House Roastery</span><span>·</span><span>Seasonal Sweets</span><span>·</span>
+  </div>
+</div>
+
+<!-- CONCEPT -->
+<section class="concept" id="concept">
+  <div class="wrap concept__grid">
+    <div class="concept__media reveal">
+      <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1000&q=80" alt="木陰の店内と挽きたての珈琲" loading="lazy">
+      <div class="concept__badge"><b>11</b><span>SEATS ONLY</span></div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Our Concept</span>
+      <h2 class="h-lg">一杯のための、<br>静かな余白。</h2>
+      <p class="lead">
+        店主が週に一度だけ焙煎する少量の豆は、香りを残すために深く焼き切りません。
+        淹れるのは、その日の湿度と気温に合わせた手挽きのハンドドリップ。
+      </p>
+      <p class="lead">
+        器は益子の作家もの、椅子は経年した木のもの。
+        飾らない素材だけを選び、音と光をできるだけ少なくした空間でお待ちしています。
+      </p>
+      <div class="concept__sign">
+        <i>K</i>
+        <span><b>木下 遥</b>Owner / Roaster — 2014年より珈琲焙煎に従事</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="wrap">
+    <div class="menu__head">
+      <div>
+        <span class="eyebrow on-dark">Menu</span>
+        <h2 class="h-lg">お品書き</h2>
+      </div>
+      <p class="menu__note">※ 表示は税込価格です。豆の在庫により、一部商品をご用意できない場合がございます。</p>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-filter="all">すべて</button>
+      <button class="tab" data-filter="drink">珈琲・ドリンク</button>
+      <button class="tab" data-filter="food">フード</button>
+      <button class="tab" data-filter="sweet">スイーツ</button>
+    </div>
+
+    <div class="menu__grid">
+      <article class="card reveal" data-cat="drink">
+        <div class="card__top"><span class="card__tag">Signature</span><span class="card__price">¥780</span></div>
+        <h3>深煎りブレンド</h3>
+        <p class="en">Kokage Blend</p>
+        <p>ブラジルとエチオピアの配合。カカオと黒糖の余韻、後味は軽やかに。</p>
+        <span class="card__num">01</span>
+      </article>
+      <article class="card reveal" data-cat="drink">
+        <div class="card__top"><span class="card__tag">Seasonal</span><span class="card__price">¥880</span></div>
+        <h3>いちじくのカフェラテ</h3>
+        <p class="en">Fig &amp; Cinnamon Latte</p>
+        <p>自家製いちじくシロップとシナモン。秋の限定、ほのかな酸味。</p>
+        <span class="card__num">02</span>
+      </article>
+      <article class="card reveal" data-cat="drink">
+        <div class="card__top"><span class="card__tag">Classic</span><span class="card__price">¥820</span></div>
+        <h3>水出しアイスコーヒー</h3>
+        <p class="en">Cold Brew 18h</p>
+        <p>18時間かけて低温抽出。雑味のない、澄んだ口当たり。</p>
+        <span class="card__num">03</span>
+      </article>
+      <article class="card reveal" data-cat="drink">
+        <div class="card__top"><span class="card__tag">Tea</span><span class="card__price">¥850</span></div>
+        <h3>宇治抹茶ラテ</h3>
+        <p class="en">Uji Matcha Latte</p>
+        <p>石臼挽きの一番茶を点てて。甘さは控えめに仕上げています。</p>
+        <span class="card__num">04</span>
+      </article>
+      <article class="card reveal" data-cat="food">
+        <div class="card__top"><span class="card__tag">Baked</span><span class="card__price">¥1,100</span></div>
+        <h3>クロックムッシュ</h3>
+        <p class="en">Croque Monsieur</p>
+        <p>自家製ベシャメルと熟成チーズ。14:00以降のご提供です。</p>
+        <span class="card__num">05</span>
+      </article>
+      <article class="card reveal" data-cat="food">
+        <div class="card__top"><span class="card__tag">Morning</span><span class="card__price">¥950</span></div>
+        <h3>木陰のモーニング</h3>
+        <p class="en">Morning Set</p>
+        <p>焼きたてスコーンと本日の珈琲。開店から11:00までの限定。</p>
+        <span class="card__num">06</span>
+      </article>
+      <article class="card reveal" data-cat="sweet">
+        <div class="card__top"><span class="card__tag">Homemade</span><span class="card__price">¥680</span></div>
+        <h3>バスクチーズケーキ</h3>
+        <p class="en">Basque Cheesecake</p>
+        <p>香ばしい焦げ目と、とろりとした中心。珈琲との相性を考えて。</p>
+        <span class="card__num">07</span>
+      </article>
+      <article class="card reveal" data-cat="sweet">
+        <div class="card__top"><span class="card__tag">Limited</span><span class="card__price">¥720</span></div>
+        <h3>栗とほうじ茶のテリーヌ</h3>
+        <p class="en">Chestnut &amp; Hojicha Terrine</p>
+        <p>一晩かけて固めた、ねっとりとした口どけ。秋だけの一品。</p>
+        <span class="card__num">08</span>
+      </article>
+      <article class="card reveal" data-cat="sweet">
+        <div class="card__top"><span class="card__tag">Vegan</span><span class="card__price">¥640</span></div>
+        <h3>スパイスビスコッティ</h3>
+        <p class="en">Spice Biscotti</p>
+        <p>卵・乳製品不使用。手土産用にラッピングも承ります。</p>
+        <span class="card__num">09</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CRAFT -->
+<section class="craft">
+  <div class="wrap">
+    <div class="craft__grid">
+      <div class="craft__item reveal">
+        <b>03<small>DAYS</small></b>
+        <h4>浅煎りから深煎りまで</h4>
+        <p>毎週火曜に焙煎。3日間のガス抜きを経て、最も香りの高い状態でのみご提供します。</p>
+      </div>
+      <div class="craft__item reveal">
+        <b>11<small>SEATS</small></b>
+        <h4>静けさを守る席数</h4>
+        <p>会話と読書のための空間。席間はゆったり、照明はすべて間接光で構成しています。</p>
+      </div>
+      <div class="craft__item reveal">
+        <b>2019<small>SINCE</small></b>
+        <h4>この街の路地裏で</h4>
+        <p>代々木上原の古い建物を改装して開店。地域の豆屋・陶芸家・農家とだけ取引しています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="gallery__head reveal">
+      <span class="eyebrow">The Space</span>
+      <h2 class="h-lg">光と、木と、湯気。</h2>
+    </div>
+    <div class="gallery__grid reveal">
+      <div class="ph g1"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="店内のカウンター席" loading="lazy"><span>Counter</span></div>
+      <div class="ph g2"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" alt="ハンドドリップの様子" loading="lazy"><span>Hand Drip</span></div>
+      <div class="ph g3"><img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=800&q=80" alt="焙煎された珈琲豆" loading="lazy"><span>Roastery</span></div>
+      <div class="ph g4"><img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=800&q=80" alt="ラテアート" loading="lazy"><span>Latte Art</span></div>
+      <div class="ph g5"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=80" alt="窓辺の席" loading="lazy"><span>Window Seat</span></div>
+      <div class="ph g6"><img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1000&q=80" alt="焼き菓子のショーケース" loading="lazy"><span>Sweets</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICE -->
+<section class="voice on-dark">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Voices</span>
+      <h2 class="h-lg" style="margin-top:1rem">また来たくなる理由。</h2>
+    </div>
+    <div class="voice__grid">
+      <blockquote class="reveal">
+        <span class="stars">★★★★★</span>
+        「仕事の合間に一人で。電源と静けさがありがたく、珈琲は本当に丁寧。長居したくなる場所です。」
+        <cite>— S.N / Design</cite>
+      </blockquote>
+      <blockquote class="reveal">
+        <span class="stars">★★★★★</span>
+        「栗のテリーヌのために季節ごとに通っています。店主さんのお話も、いつも控えめで心地よい。」
+        <cite>— M.A / Editor</cite>
+      </blockquote>
+      <blockquote class="reveal">
+        <span class="stars">★★★★★</span>
+        「初めて来たのに、昔から知っている場所みたいでした。光の入り方が本当にきれいです。」
+        <cite>— T.K / Photographer</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="access" id="access">
+  <div class="wrap access__grid">
+    <div class="reveal">
+      <span class="eyebrow">Access</span>
+      <h2 class="h-lg" style="margin-top:1rem">店舗情報</h2>
+      <table class="info-table">
+        <tr><th>住所</th><td>東京都渋谷区上原 1-xx-x 木陰ビル 1F</td></tr>
+        <tr><th>アクセス</th><td>小田急線「代々木上原」駅 西口より徒歩4分<br>千代田線 同駅 北口より徒歩5分</td></tr>
+        <tr><th>営業時間</th><td>平日 9:00 – 19:00（L.O. 18:30）<br>土日祝 8:00 – 20:00（L.O. 19:30）</td></tr>
+        <tr><th>定休日</th><td>火曜日・毎月第2水曜日</td></tr>
+        <tr><th>席数・設備</th><td>11席／全席禁煙・Wi-Fi・電源あり</td></tr>
+        <tr><th>お支払い</th><td>現金・クレジットカード・各種QR決済</td></tr>
+      </table>
+    </div>
+    <div class="map reveal">
+      <div class="map__pin">
+        <div class="map__dot"></div>
+        <div class="map__label">KOKAGE COFFEE</div>
+        <div class="tiny">代々木上原 徒歩4分</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVE -->
+<section class="reserve" id="reserve">
+  <div class="wrap reserve__grid">
+    <div class="reveal">
+      <span class="eyebrow on-dark">Reservation</span>
+      <h2 class="h-lg">静かな席を、<br>ご用意します。</h2>
+      <p>
+        混雑を避けるため、お席のご予約を承っております。<br>
+        前日 18:00 までにフォームよりご連絡ください。5名様以上はお電話にて。
+      </p>
+      <p class="tiny" style="color:rgba(244,239,228,.45);margin-top:1.6rem">TEL 03-0000-0000（営業時間内）</p>
+    </div>
+    <form class="form reveal" id="reserveForm" novalidate>
+      <div class="field">
+        <label for="name">お名前</label>
+        <input id="name" name="name" type="text" placeholder="山田 花子" required>
+      </div>
+      <div class="field">
+        <label for="tel">お電話番号</label>
+        <input id="tel" name="tel" type="tel" placeholder="090-0000-0000" required>
+      </div>
+      <div class="field">
+        <label for="date">ご希望日</label>
+        <input id="date" name="date" type="date" required>
+      </div>
+      <div class="field">
+        <label for="time">ご希望時間</label>
+        <select id="time" name="time">
+          <option>09:00</option><option>10:00</option><option>11:00</option>
+          <option>13:00</option><option>14:00</option><option>15:00</option>
+          <option>16:00</option><option>17:00</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="people">人数</label>
+        <select id="people" name="people">
+          <option>1名</option><option>2名</option><option>3名</option><option>4名</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="seat">お席のご希望</label>
+        <select id="seat" name="seat">
+          <option>指定なし</option><option>カウンター</option><option>窓辺</option><option>テーブル</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label for="note">ご要望（任意）</label>
+        <textarea id="note" name="note" rows="3" placeholder="アレルギー、ご利用シーンなど"></textarea>
+      </div>
+      <button class="btn btn--gold" type="submit">予約リクエストを送る<span class="btn__arrow"></span></button>
+      <p class="form__msg" id="formMsg" role="status"></p>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__top">
+      <div>
+        <div class="footer__logo">Kokage</div>
+        <p style="margin:.8rem 0 0;letter-spacing:.14em">木陰で、ひと息を。</p>
+      </div>
+      <div class="footer__links">
+        <a href="#concept">Concept</a>
+        <a href="#menu">Menu</a>
+        <a href="#gallery">Space</a>
+        <a href="#access">Access</a>
+        <a href="#reserve">Reserve</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 KOKAGE COFFEE. All rights reserved.</span>
+      <span>Tokyo / Yoyogi-Uehara</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* progress bar */
+const bar = document.getElementById('progress');
+addEventListener('scroll', () => {
+  const h = document.documentElement;
+  const p = h.scrollTop / (h.scrollHeight - h.clientHeight);
+  bar.style.width = (p * 100) + '%';
+}, {passive:true});
+
+/* nav state */
+const nav = document.getElementById('nav');
+addEventListener('scroll', () => {
+  nav.classList.toggle('is-solid', scrollY > innerHeight * 0.75);
+}, {passive:true});
+
+/* drawer */
+const burger = document.getElementById('burger');
+const drawer = document.getElementById('drawer');
+const toggle = (open) => {
+  burger.classList.toggle('open', open);
+  drawer.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+};
+burger.addEventListener('click', () => toggle(!drawer.classList.contains('open')));
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggle(false)));
+
+/* reveal on scroll */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = (i % 3) * 90 + 'ms';
+  io.observe(el);
+});
+
+/* menu filter */
+const tabs = document.querySelectorAll('.tab');
+const cards = document.querySelectorAll('.card');
+tabs.forEach(t => t.addEventListener('click', () => {
+  tabs.forEach(x => x.classList.remove('active'));
+  t.classList.add('active');
+  const f = t.dataset.filter;
+  cards.forEach(c => {
+    const show = f === 'all' || c.dataset.cat === f;
+    c.classList.toggle('hide', !show);
+    if (show) { c.classList.remove('in'); void c.offsetWidth; c.classList.add('in'); }
+  });
+}));
+
+/* image fallback */
+document.querySelectorAll('img').forEach(img => {
+  img.addEventListener('error', () => { img.style.opacity = 0; });
+});
+
+/* form */
+const form = document.getElementById('reserveForm');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const msg = document.getElementById('formMsg');
+  const name = form.name.value.trim();
+  const tel = form.tel.value.trim();
+  const date = form.date.value;
+  if (!name || !tel || !date) {
+    msg.textContent = 'お名前・お電話番号・ご希望日をご入力ください。';
+    msg.style.color = '#d9a05b';
+    return;
+  }
+  msg.style.color = 'var(--gold)';
+  msg.textContent = `${name} 様、${date} ${form.time.value} にて承りました。折り返しご連絡いたします。`;
+  form.reset();
+});
+</script>
+</body>
+</html>
+
+							<script>
+                            	
+							</script>
+                        </body>
+                        </html>
+                    
