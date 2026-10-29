@@ -18,8 +18,8 @@ each entry links to its own page.
 
 | Model | Work | Description |
 | --- | --- | --- |
-| `DeepSeek-V4.1-Flash-1017` | [KOKAGE COFFEE](https://making.github.io/cafe-lp/DeepSeek-V4.1-Flash-1017/) | A full landing page for "KOKAGE COFFEE" with concept, menu, gallery, access and reservation sections. |
 | `GLM-5.3-Flash-FP4-Local` | [KOMOREBI CAFE](https://making.github.io/cafe-lp/GLM-5.3-Flash-FP4-Local/) | A landing page for "KOMOREBI CAFE" with concept, menu, store information and a reservation call to action. |
+| `DeepSeek-V4.1-Flash-1017` | [KOKAGE COFFEE](https://making.github.io/cafe-lp/DeepSeek-V4.1-Flash-1017/) | A full landing page for "KOKAGE COFFEE" with concept, menu, gallery, access and reservation sections. |
 
 ## Running
 
